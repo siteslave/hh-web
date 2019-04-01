@@ -23,7 +23,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              },
+              {
+                "input": "./node_modules/@mdi/font/css/materialdesignicons.css"
+              },
+              {
+                "input": "./node_modules/angular-notifier/styles.css"
+              },
+              "src/assets/css/sb-admin-2.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

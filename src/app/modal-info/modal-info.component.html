@@ -1,0 +1,37 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-basic-title">PATIENT INFO</h3>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>CID</td>
+              <td><strong>1234567890</strong></td>
+            </tr>
+            <tr>
+              <td>FULLNAME</td>
+              <td><strong>SATIT RIANPIT</strong></td>
+            </tr>
+            <tr>
+              <td>CHRONIC</td>
+              <td><strong>xxxx xxxxx</strong></td>
+            </tr>
+            <tr>
+              <td>ALLERGY</td>
+              <td><strong>xxxx xxxxx</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="dismiss()">ปิดหน้าต่าง</button>
+  </div>
+</ng-template>

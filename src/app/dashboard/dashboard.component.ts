@@ -5,6 +5,7 @@ import * as mqttClient from '../../vendor/mqtt';
 import { MqttClient } from 'mqtt';
 
 import { ModalInfoComponent } from '../modal-info/modal-info.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,16 +19,33 @@ export class DashboardComponent implements OnInit {
   isOffline = false;
   total = 0;
 
+  items: any = [];
+
   private readonly notifier: NotifierService;
 
   @ViewChild('modalInfo') modalInfo: ModalInfoComponent;
 
-  constructor(notifierService: NotifierService, private zone: NgZone) {
+  constructor(notifierService: NotifierService,
+    private zone: NgZone,
+    private api: ApiService) {
     this.notifier = notifierService;
   }
 
+  async getRequest() {
+    try {
+      var rs: any = await this.api.getRequsts();
+      if (rs.ok) {
+        this.items = rs.rows;
+      } else {
+        this.notifier.notify('error', rs.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   ngOnInit() {
-    this.notifier.notify('success', 'You are awesome! I mean it!');
+    this.getRequest();
     this.connectWebSocket();
   }
 
@@ -66,6 +84,9 @@ export class DashboardComponent implements OnInit {
     this.client.on('message', (topic, payload) => {
       try {
         console.log(payload.toString());
+
+        that.getRequest();
+
         that.total++;
         that.notifier.notify('success', 'New patient request!');
       } catch (error) {

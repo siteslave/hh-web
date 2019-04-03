@@ -11,6 +11,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ModalInfoComponent } from './modal-info/modal-info.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     NotifierModule.withConfig({
@@ -32,6 +35,7 @@ import { environment } from '../environments/environment';
     })
   ],
   providers: [
+    ApiService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: 'API_URL', useValue: environment.apiUrl },
   ],

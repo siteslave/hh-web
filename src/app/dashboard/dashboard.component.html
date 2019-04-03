@@ -14,12 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>1235465687983</td>
-      <td>0098990</td>
-      <td>SATIT RIANPIT</td>
-      <td>นอนไม่ค่อยหลับก ปวดศีรษะ</td>
+    <tr *ngFor="let item of items; let idx = index">
+      <td>{{ idx+1 }}</td>
+      <td>{{ item.cid }}</td>
+      <td>{{ item.hn }}</td>
+      <td>{{ item.first_name }} {{ item.last_name }}</td>
+      <td>{{ item.symptom }}</td>
       <td>
         <div class="btn-group">
           <button class="btn btn-info" (click)="openInfo('xx')">INFO</button>

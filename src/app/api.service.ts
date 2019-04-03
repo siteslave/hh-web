@@ -9,20 +9,19 @@ export class ApiService {
   httpOptions: any;
 
   constructor(@Inject('API_URL') private apiUrl: string, private httpClient: HttpClient) {
-    this.token = sessionStorage.getItem('token');
+    var _token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsbmFtZSI6IlNBVElUIFJJQU5QSVQiLCJ1c2VybmFtZSI6InNhdGl0IiwiaWQiOjEsImlhdCI6MTU1NDI3NjIxMSwiZXhwIjoxNTg1ODMzODExfQ.790_ztW39uWSMsDn-uPEOtETPe7iBueP780YhBCPJPA';
+
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.token
+        'Authorization': 'Bearer ' + _token
       })
     };
   }
 
   async getRequsts() {
     const _url = `${this.apiUrl}/request`;
-    return this.httpClient.post(_url, {
-      id: '1'
-    }, this.httpOptions).toPromise();
+    return this.httpClient.get(_url, this.httpOptions).toPromise();
   }
 
 }

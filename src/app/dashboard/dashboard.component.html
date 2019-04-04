@@ -14,7 +14,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of items; let idx = index">
+    <tr *ngFor="let item of items; let idx = index"
+      [ngClass]="{'table-warning': item.status === '1', 'table-success': item.status === '2', 'table-danger': item.status === '0'}">
       <td>{{ idx+1 }}</td>
       <td>{{ item.cid }}</td>
       <td>{{ item.hn }}</td>
@@ -23,8 +24,10 @@
       <td>
         <div class="btn-group">
           <button class="btn btn-info" (click)="openInfo('xx')">INFO</button>
-          <button class="btn btn-primary">ACCEPT</button>
-          <button class="btn btn-danger">REJECT</button>
+          <button class="btn btn-primary" (click)="updateStatus(item.register_id, item.request_id, '2')">ACCEPT</button>
+          <button class="btn btn-danger" (click)="updateStatus(item.register_id, item.request_id, '0')">REJECT</button>
+          <button class="btn btn-success"
+            (click)="updateStatus(item.register_id, item.request_id, '5')">COMPLETE</button>
         </div>
       </td>
     </tr>

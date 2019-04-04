@@ -132,4 +132,20 @@ export class DashboardComponent implements OnInit {
   openInfo(hn: any) {
     this.modalInfo.open();
   }
+
+  async updateStatus(registerId: any, requestId: any, status: any) {
+    try {
+      var rs: any = await this.api.updateStatus(registerId, requestId, status);
+      if (rs.ok) {
+        this.getRequest();
+        this.notifier.notify('success', 'เปลี่ยนสถานะเรียบร้อยแล้ว');
+      } else {
+        this.notifier.notify('error', 'เกิดข้อผิดพลาด');
+      }
+    } catch (error) {
+      console.log(error);
+      this.notifier.notify('error', 'ERROR');
+    }
+  }
+
 }

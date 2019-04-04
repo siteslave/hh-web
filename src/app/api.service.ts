@@ -24,4 +24,12 @@ export class ApiService {
     return this.httpClient.get(_url, this.httpOptions).toPromise();
   }
 
+  async updateStatus(registerId: any, requestId: any, status: any) {
+    const _url = `${this.apiUrl}/request/status/${registerId}/${requestId}`;
+    const body: any = {
+      status: status
+    };
+    return this.httpClient.put(_url, body, this.httpOptions).toPromise();
+  }
+
 }

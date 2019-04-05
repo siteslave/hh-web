@@ -25,10 +25,27 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('modalInfo') modalInfo: ModalInfoComponent;
 
+  lat: any;
+  lng: any;
+
   constructor(notifierService: NotifierService,
     private zone: NgZone,
     private api: ApiService) {
     this.notifier = notifierService;
+
+    if (navigator) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        console.log(pos.coords);
+        this.lng = +pos.coords.longitude;
+        this.lat = +pos.coords.latitude;
+      });
+    }
+  }
+
+  async openMap(lat: any, lng: any) {
+    // var url = 'https://www.google.com/maps/dir/?api=1&origin=' + this.lat + ',' + this.lng + '&destination=' + lat + ',' + lng + '&travelmode=driving&dir_action=navigate';
+    var url = `https://www.google.com/maps/dir/?api=1&origin=${this.lat},${this.lng}&destination=${lat},${lng}&travelmode=driving&dir_action=navigate`;
+    window.open(url, '_blank');
   }
 
   async getRequest() {

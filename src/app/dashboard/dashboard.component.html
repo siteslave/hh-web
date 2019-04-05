@@ -24,6 +24,7 @@
       <td>
         <div class="btn-group">
           <button class="btn btn-info" (click)="openInfo('xx')">INFO</button>
+          <button class="btn btn-warning" (click)="openMap(item.lat, item.lng)">MAP</button>
           <button class="btn btn-primary" (click)="updateStatus(item.register_id, item.request_id, '2')">ACCEPT</button>
           <button class="btn btn-danger" (click)="updateStatus(item.register_id, item.request_id, '0')">REJECT</button>
           <button class="btn btn-success"
